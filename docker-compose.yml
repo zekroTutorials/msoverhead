@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  server:
+    build: "."
+    image: "zekrotutorials/node"
+    command:
+      - "-n=1"
+  sender:
+    build: "."
+    image: "zekrotutorials/node"
+    command:
+      - "-n=0"
+      - "-t=http://server"
+      - "-r=1000"
+      - "-d=100ms"

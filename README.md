@@ -10,8 +10,8 @@ The sender then repeats this and measures the average RTT inclusive the serializ
 
 > The following results below were tested on Docker for Windows (WSL2) v20.10.6.
 
-![](https://i.imgur.com/13iKM81.png)
+![](.github/media/1k100ms.png)
 
-![](https://i.imgur.com/ov5TuiR.png)
+![](.github/media/1k1ms.png)
 
-![](https://i.imgur.com/0r2mMHt.png)
+![](.github/media/1k1ys.png)

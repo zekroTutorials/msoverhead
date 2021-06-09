@@ -13,4 +13,4 @@ services:
       - "-n=0"
       - "-t=http://server"
       - "-r=1000"
-      - "-d=100ms"
+      - "-d=1ms"

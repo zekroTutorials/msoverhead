@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"math"
 	"net/http"
 	"time"
 
@@ -63,6 +64,7 @@ func startSender() {
 	}
 
 	var avg, min, max time.Duration
+	var der float64
 	for _, rtt := range rtts {
 		avg += rtt
 		if min == 0 || rtt < min {
@@ -74,10 +76,17 @@ func startSender() {
 	}
 	avg = avg / time.Duration(len(rtts))
 
+	for _, rtt := range rtts {
+		der += math.Pow(float64(rtt-avg), 2)
+	}
+	der = der / float64(len(rtts))
+	derd := time.Duration(math.Sqrt(der))
+
 	fmt.Printf("rtt stats over %d requests (1 every %s):\n", len(rtts), delay)
 	fmt.Printf("Average: %s (%dns)\n", avg, avg)
 	fmt.Printf("Min:     %s (%dns)\n", min, min)
 	fmt.Printf("Max:     %s (%dns)\n", max, max)
+	fmt.Printf("SD:      %s (%dns)\n", derd, derd)
 }
 
 func send(rttC chan time.Duration) (err error) {
